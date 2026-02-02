@@ -1,0 +1,19 @@
+<div class="layout-container" [class]="'state-' + uiService.sidebarState()">
+
+  <app-sidebar></app-sidebar>
+
+  <div class="main-content">
+
+    <button class="sidebar-open-btn" (click)="uiService.openSidebar()" title="Open Sidebar">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+      </svg>
+    </button>
+
+    <main class="canvas-area">
+      <app-solar-system></app-solar-system>
+    </main>
+
+    <app-controls></app-controls>
+  </div>
+</div>

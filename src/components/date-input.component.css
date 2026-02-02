@@ -1,0 +1,27 @@
+:host {
+  display: block;
+}
+
+.date-input {
+  background: var(--bg-element);
+  border: 1px solid var(--border);
+  color: var(--text-main);
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  width: 100%;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  text-align: center;
+  transition: all 0.2s;
+
+  &:hover {
+    background: var(--bg-hover);
+    border-color: var(--border-hover, var(--text-muted));
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: var(--bg-element);
+  }
+}

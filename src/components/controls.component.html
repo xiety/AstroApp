@@ -1,0 +1,46 @@
+<div class="controls-panel">
+
+  <div class="transport-row">
+    <button class="play-btn" (click)="solarService.togglePlay()" [title]="solarService.isPlaying() ? 'Pause' : 'Play'">
+      @if (solarService.isPlaying()) {
+      <svg class="play-icon" viewBox="0 0 24 24">
+        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+      </svg>
+      } @else {
+      <svg class="play-icon" viewBox="0 0 24 24">
+        <path d="M8 5v14l11-7z" />
+      </svg>
+      }
+    </button>
+
+    <div class="speed-control-group">
+      <span class="speed-label">SPEED</span>
+      <div class="speed-btn-row">
+        @for (opt of SPEED_OPTIONS; track opt) {
+        <button class="speed-btn" [class.active]="solarService.simulationSpeed() === opt" (click)="setSpeed(opt)">
+          {{ opt }}x
+        </button>
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="dates-row">
+    <app-date-input class="timeline-date-input start-input" [date]="solarService.startDate()"
+      (dateChange)="onStartDateChange($event)">
+    </app-date-input>
+
+    <div class="current-date-group">
+      <app-date-input class="timeline-date-input current-input" [date]="solarService.currentDate()"
+        (dateChange)="onCurrentDateChange($event)">
+      </app-date-input>
+    </div>
+
+    <app-date-input class="timeline-date-input end-input" [date]="solarService.endDate()"
+      (dateChange)="onEndDateChange($event)">
+    </app-date-input>
+  </div>
+
+  <app-time-slider></app-time-slider>
+
+</div>

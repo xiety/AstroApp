@@ -1,0 +1,5 @@
+<div class="canvas-wrapper" #canvasWrapper>
+  <canvas #mainCanvas class="solar-canvas" [style.cursor]="cursorStyle()" (click)="onCanvasClick($event)"
+    (mousemove)="onCanvasMouseMove($event)" (mouseleave)="onCanvasLeave()">
+  </canvas>
+</div>

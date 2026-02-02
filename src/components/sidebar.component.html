@@ -1,0 +1,68 @@
+<div class="sidebar-backdrop" (click)="uiService.closeSidebar()"></div>
+
+<div class="sidebar-panel">
+  <div class="sidebar-header">
+    <div class="brand">
+      <h1>Solar System</h1>
+      <a href="https://github.com/xiety/AstroApp" target="_blank" rel="noopener noreferrer"
+        class="github-link">github</a>
+    </div>
+
+    <button class="close-btn" (click)="uiService.closeSidebar()" title="Close sidebar">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path
+          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+      </svg>
+    </button>
+  </div>
+
+  <div class="scroll-content">
+    <div class="control-section">
+      <span class="section-label">Options</span>
+      <div class="checkbox-group">
+        <label class="checkbox-label">
+          <input type="checkbox" [checked]="solarService.isHeliocentric()" (change)="solarService.toggleHeliocentric()">
+          Heliocentric Orbits
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" [checked]="solarService.showOrbits()" (change)="solarService.toggleOrbits()">
+          Show Orbits
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" [checked]="solarService.showTrails()" (change)="solarService.toggleTrails()">
+          Show Trails
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" [checked]="solarService.showRetrograde()" (change)="solarService.toggleRetrograde()">
+          Highlight Retrograde
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" [checked]="solarService.showLabels()" (change)="solarService.toggleLabels()">
+          Show Labels
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" [checked]="solarService.showStars()" (change)="solarService.toggleStars()">
+          Show Stars
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" [checked]="solarService.alignEcliptic()" (change)="solarService.toggleAlignEcliptic()">
+          Align to Ecliptic
+        </label>
+      </div>
+    </div>
+
+    <div class="control-section">
+      <span class="section-label">Center Focus</span>
+      <ul class="focus-list">
+        @for (name of solarService.availableBodies; track name) {
+        <li>
+          <button class="focus-item" [class.active]="solarService.selectedCenter() === name"
+            (click)="onCenterClick(name)">
+            {{ name }}
+          </button>
+        </li>
+        }
+      </ul>
+    </div>
+  </div>
+</div>

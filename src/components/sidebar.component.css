@@ -1,0 +1,249 @@
+:host {
+  display: block;
+  height: 100%;
+  position: relative;
+  z-index: 30;
+  width: 280px;
+  flex-shrink: 0;
+  background: var(--bg-panel);
+  border-right: 1px solid var(--border);
+  overflow: hidden;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:host(.state-closed) {
+  width: 0;
+  border-right: none;
+}
+
+:host(.state-open) {
+  width: 280px;
+}
+
+.sidebar-panel {
+  width: 280px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 1.5rem;
+  background: var(--bg-panel);
+}
+
+.sidebar-backdrop {
+  display: none;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  flex-shrink: 0;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.2;
+}
+
+.github-link {
+  display: inline-block;
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.github-link:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+.close-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+  transition: background-color 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.5rem;
+}
+
+.close-btn:hover {
+  color: var(--text-main);
+  background: var(--bg-hover);
+}
+
+.close-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.scroll-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-right: 4px;
+}
+
+.scroll-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scroll-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scroll-content::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 2px;
+}
+
+.scroll-content::-webkit-scrollbar-thumb:hover {
+  background: var(--border-hover);
+}
+
+.section-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+  display: block;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--text-main);
+  font-size: 0.9rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.focus-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.focus-item {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  padding: 0.6rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.focus-item:hover {
+  background: var(--bg-hover);
+  color: var(--text-main);
+}
+
+.focus-item.active {
+  background: var(--bg-element);
+  color: var(--primary);
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+
+  :host,
+  :host(.state-open),
+  :host(.state-closed),
+  :host(.state-auto) {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 50;
+    background: transparent;
+    border: none;
+    overflow: visible;
+    transition: none;
+  }
+
+  :host,
+  :host(.state-closed),
+  :host(.state-auto) {
+    pointer-events: none;
+  }
+
+  .sidebar-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 85vw;
+    max-width: 320px;
+    background: var(--bg-panel);
+    border-right: 1px solid var(--border);
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: auto;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+  }
+
+  .sidebar-backdrop {
+    display: block;
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+    backdrop-filter: blur(2px);
+  }
+
+  :host(.state-open) {
+    pointer-events: auto;
+  }
+
+  :host(.state-open) .sidebar-panel {
+    transform: translateX(0);
+  }
+
+  :host(.state-open) .sidebar-backdrop {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  :host(.state-closed) .sidebar-panel {
+    transform: translateX(-100%);
+  }
+}
