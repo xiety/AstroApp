@@ -1,0 +1,2 @@
+<input type="text" [ngModel]="displayValue()" (ngModelChange)="onInput($event)" (blur)="onBlur()"
+  (keydown.enter)="onBlur()" class="date-input" placeholder="yyyy-mm-dd" />

@@ -1,0 +1,10 @@
+<div class="slider-track-container" (mousemove)="onSliderHover($event)" (mouseleave)="onSliderLeave()">
+  @if (hoverDate()) {
+  <div class="slider-tooltip" [style.left.px]="tooltipX()">
+    {{ hoverDate() | date:'yyyy-MM-dd':'UTC' }}
+  </div>
+  }
+
+  <input type="range" class="time-slider" min="0" [max]="solarService.totalDays()" step="1"
+    [value]="solarService.daysElapsed()" (input)="onTimeSliderChange($event)" />
+</div>
